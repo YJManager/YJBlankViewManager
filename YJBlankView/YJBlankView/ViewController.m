@@ -23,6 +23,7 @@
     blankView.detailLabel.text = @"detail";
     
     NSLog(@"%@", self.view);
+    
     [self.view addSubview:blankView];
     
     

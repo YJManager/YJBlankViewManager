@@ -143,14 +143,19 @@
     
     self.contentView.frame  = self.frame;
 
-    CGFloat contentCenterX = self.contentView.bounds.size.width * 0.5;
-    CGFloat contentCenterY = self.contentView.bounds.size.height * 0.5 + self.verticalOffset;
+    CGFloat contentW = self.contentView.bounds.size.width;
+    CGFloat contentH = self.contentView.bounds.size.height;
+    CGFloat contentCenterX = contentW * 0.5;
+    CGFloat contentCenterY = contentH * 0.5 + self.verticalOffset;
     CGFloat verticalMargin = self.verticalMargin;
     
-    self.titleLabel.frame = CGRectMake(0, contentCenterY, <#CGFloat width#>, <#CGFloat height#>)
-    
-    CGFloat imageViewCenterY =
-    self.imageView.center = CGPointMake(contentCenterX, <#CGFloat y#>)
+    CGFloat titleLabelH = [self.titleLabel.text sizeWithAttributes:@{NSFontAttributeName:self.titleLabel.font}].height;
+    NSLog(@"-- %@", self.titleLabel);
+
+    self.titleLabel.frame = CGRectMake(0, contentCenterY, contentW, titleLabelH);
+    NSLog(@"%@", self.titleLabel);
+    CGFloat imageViewCenterY = contentCenterY - titleLabelH * 0.5 - self.imageView.bounds.size.height * 0.5;
+    self.imageView.center = CGPointMake(contentCenterX, imageViewCenterY);
     
 }
 
