@@ -13,6 +13,12 @@
 		63BEF6FB1DAB63A400D58D53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63BEF6F91DAB63A400D58D53 /* Main.storyboard */; };
 		63BEF6FD1DAB63A400D58D53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63BEF6FC1DAB63A400D58D53 /* Assets.xcassets */; };
 		63BEF7001DAB63A400D58D53 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63BEF6FE1DAB63A400D58D53 /* LaunchScreen.storyboard */; };
+		63BEF7111DAB673C00D58D53 /* UIViewController+YJBlankView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BEF7101DAB673C00D58D53 /* UIViewController+YJBlankView.m */; };
+		63BEF7141DAB676A00D58D53 /* UIScrollView+YJBlankView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BEF7131DAB676A00D58D53 /* UIScrollView+YJBlankView.m */; };
+		63BEF7171DAB677D00D58D53 /* UITableView+YJBlankView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BEF7161DAB677D00D58D53 /* UITableView+YJBlankView.m */; };
+		63BEF71A1DAB679700D58D53 /* UICollectionView+YJBlankView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BEF7191DAB679700D58D53 /* UICollectionView+YJBlankView.m */; };
+		63BEF71D1DAB67C600D58D53 /* UIView+YJBlankView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BEF71C1DAB67C600D58D53 /* UIView+YJBlankView.m */; };
+		63BEF7201DAB680100D58D53 /* YJBlankView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BEF71F1DAB680100D58D53 /* YJBlankView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +33,18 @@
 		63BEF6FF1DAB63A400D58D53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63BEF7011DAB63A400D58D53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63BEF70E1DAB64C700D58D53 /* YJBlankViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJBlankViewManager.h; sourceTree = "<group>"; };
+		63BEF70F1DAB673C00D58D53 /* UIViewController+YJBlankView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+YJBlankView.h"; sourceTree = "<group>"; };
+		63BEF7101DAB673C00D58D53 /* UIViewController+YJBlankView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+YJBlankView.m"; sourceTree = "<group>"; };
+		63BEF7121DAB676A00D58D53 /* UIScrollView+YJBlankView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+YJBlankView.h"; sourceTree = "<group>"; };
+		63BEF7131DAB676A00D58D53 /* UIScrollView+YJBlankView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+YJBlankView.m"; sourceTree = "<group>"; };
+		63BEF7151DAB677D00D58D53 /* UITableView+YJBlankView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+YJBlankView.h"; sourceTree = "<group>"; };
+		63BEF7161DAB677D00D58D53 /* UITableView+YJBlankView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+YJBlankView.m"; sourceTree = "<group>"; };
+		63BEF7181DAB679700D58D53 /* UICollectionView+YJBlankView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+YJBlankView.h"; sourceTree = "<group>"; };
+		63BEF7191DAB679700D58D53 /* UICollectionView+YJBlankView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+YJBlankView.m"; sourceTree = "<group>"; };
+		63BEF71B1DAB67C600D58D53 /* UIView+YJBlankView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YJBlankView.h"; sourceTree = "<group>"; };
+		63BEF71C1DAB67C600D58D53 /* UIView+YJBlankView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YJBlankView.m"; sourceTree = "<group>"; };
+		63BEF71E1DAB680100D58D53 /* YJBlankView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJBlankView.h; sourceTree = "<group>"; };
+		63BEF71F1DAB680100D58D53 /* YJBlankView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJBlankView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +116,8 @@
 		63BEF7081DAB649F00D58D53 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				63BEF71B1DAB67C600D58D53 /* UIView+YJBlankView.h */,
+				63BEF71C1DAB67C600D58D53 /* UIView+YJBlankView.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -105,6 +125,8 @@
 		63BEF7091DAB649F00D58D53 /* UICollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				63BEF7181DAB679700D58D53 /* UICollectionView+YJBlankView.h */,
+				63BEF7191DAB679700D58D53 /* UICollectionView+YJBlankView.m */,
 			);
 			path = UICollectionView;
 			sourceTree = "<group>";
@@ -112,6 +134,8 @@
 		63BEF70A1DAB649F00D58D53 /* UIScrollView */ = {
 			isa = PBXGroup;
 			children = (
+				63BEF7121DAB676A00D58D53 /* UIScrollView+YJBlankView.h */,
+				63BEF7131DAB676A00D58D53 /* UIScrollView+YJBlankView.m */,
 			);
 			path = UIScrollView;
 			sourceTree = "<group>";
@@ -119,6 +143,8 @@
 		63BEF70B1DAB649F00D58D53 /* UITableView */ = {
 			isa = PBXGroup;
 			children = (
+				63BEF7151DAB677D00D58D53 /* UITableView+YJBlankView.h */,
+				63BEF7161DAB677D00D58D53 /* UITableView+YJBlankView.m */,
 			);
 			path = UITableView;
 			sourceTree = "<group>";
@@ -126,6 +152,8 @@
 		63BEF70C1DAB649F00D58D53 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				63BEF70F1DAB673C00D58D53 /* UIViewController+YJBlankView.h */,
+				63BEF7101DAB673C00D58D53 /* UIViewController+YJBlankView.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -133,6 +161,8 @@
 		63BEF70D1DAB649F00D58D53 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				63BEF71E1DAB680100D58D53 /* YJBlankView.h */,
+				63BEF71F1DAB680100D58D53 /* YJBlankView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -209,9 +239,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63BEF7141DAB676A00D58D53 /* UIScrollView+YJBlankView.m in Sources */,
+				63BEF71D1DAB67C600D58D53 /* UIView+YJBlankView.m in Sources */,
 				63BEF6F81DAB63A400D58D53 /* ViewController.m in Sources */,
+				63BEF7201DAB680100D58D53 /* YJBlankView.m in Sources */,
 				63BEF6F51DAB63A400D58D53 /* AppDelegate.m in Sources */,
 				63BEF6F21DAB63A400D58D53 /* main.m in Sources */,
+				63BEF71A1DAB679700D58D53 /* UICollectionView+YJBlankView.m in Sources */,
+				63BEF7171DAB677D00D58D53 /* UITableView+YJBlankView.m in Sources */,
+				63BEF7111DAB673C00D58D53 /* UIViewController+YJBlankView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
