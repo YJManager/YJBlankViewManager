@@ -10,4 +10,6 @@
 
 @interface UIView (YJBlankView)
 
+- (NSLayoutConstraint *)equallyRelatedConstraintWithView:(UIView *)view attribute:(NSLayoutAttribute)attribute;
+
 @end

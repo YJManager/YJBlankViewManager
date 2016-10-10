@@ -9,5 +9,9 @@
 #ifndef YJBlankViewManager_h
 #define YJBlankViewManager_h
 
+#import "UIViewController+YJBlankView.h"
+#import "UIScrollView+YJBlankView.h"
+#import "UITableView+YJBlankView.h"
+#import "UICollectionView+YJBlankView.h"
 
 #endif /* YJBlankViewManager_h */
