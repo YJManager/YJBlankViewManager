@@ -26,6 +26,7 @@
 		63BEF6FC1DAB63A400D58D53 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63BEF6FF1DAB63A400D58D53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63BEF7011DAB63A400D58D53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63BEF70E1DAB64C700D58D53 /* YJBlankViewManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJBlankViewManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,14 +59,11 @@
 		63BEF6EF1DAB63A400D58D53 /* YJBlankView */ = {
 			isa = PBXGroup;
 			children = (
+				63BEF7071DAB649F00D58D53 /* YJBlankViewManager */,
 				63BEF6F31DAB63A400D58D53 /* AppDelegate.h */,
 				63BEF6F41DAB63A400D58D53 /* AppDelegate.m */,
 				63BEF6F61DAB63A400D58D53 /* ViewController.h */,
 				63BEF6F71DAB63A400D58D53 /* ViewController.m */,
-				63BEF6F91DAB63A400D58D53 /* Main.storyboard */,
-				63BEF6FC1DAB63A400D58D53 /* Assets.xcassets */,
-				63BEF6FE1DAB63A400D58D53 /* LaunchScreen.storyboard */,
-				63BEF7011DAB63A400D58D53 /* Info.plist */,
 				63BEF6F01DAB63A400D58D53 /* Supporting Files */,
 			);
 			path = YJBlankView;
@@ -74,9 +72,69 @@
 		63BEF6F01DAB63A400D58D53 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				63BEF6F91DAB63A400D58D53 /* Main.storyboard */,
+				63BEF6FC1DAB63A400D58D53 /* Assets.xcassets */,
+				63BEF6FE1DAB63A400D58D53 /* LaunchScreen.storyboard */,
+				63BEF7011DAB63A400D58D53 /* Info.plist */,
 				63BEF6F11DAB63A400D58D53 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		63BEF7071DAB649F00D58D53 /* YJBlankViewManager */ = {
+			isa = PBXGroup;
+			children = (
+				63BEF70E1DAB64C700D58D53 /* YJBlankViewManager.h */,
+				63BEF70C1DAB649F00D58D53 /* ViewController */,
+				63BEF70A1DAB649F00D58D53 /* UIScrollView */,
+				63BEF70B1DAB649F00D58D53 /* UITableView */,
+				63BEF7091DAB649F00D58D53 /* UICollectionView */,
+				63BEF7081DAB649F00D58D53 /* Category */,
+				63BEF70D1DAB649F00D58D53 /* Views */,
+			);
+			path = YJBlankViewManager;
+			sourceTree = "<group>";
+		};
+		63BEF7081DAB649F00D58D53 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		63BEF7091DAB649F00D58D53 /* UICollectionView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UICollectionView;
+			sourceTree = "<group>";
+		};
+		63BEF70A1DAB649F00D58D53 /* UIScrollView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UIScrollView;
+			sourceTree = "<group>";
+		};
+		63BEF70B1DAB649F00D58D53 /* UITableView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UITableView;
+			sourceTree = "<group>";
+		};
+		63BEF70C1DAB649F00D58D53 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		63BEF70D1DAB649F00D58D53 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
