@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "YJBlankView.h"
 
 @interface ViewController ()
 
@@ -16,6 +17,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    YJBlankView * blankView = [[YJBlankView alloc] init];
+    blankView.titleLabel.text = @"12";
+    blankView.detailLabel.text = @"detail";
+    
+    NSLog(@"%@", self.view);
+    [self.view addSubview:blankView];
+    
     
 }
 
