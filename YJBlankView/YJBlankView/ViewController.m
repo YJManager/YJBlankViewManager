@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "YJBlankView.h"
 
-@interface ViewController ()
+@interface ViewController () <YJBlankViewDelegate>
 
 @end
 
@@ -19,12 +19,22 @@
     [super viewDidLoad];
     
     YJBlankView * blankView = [[YJBlankView alloc] init];
+    blankView.imageView.image = [UIImage imageNamed:@"noDataDefault"];
     blankView.titleLabel.text = @"12";
     blankView.detailLabel.text = @"detail";
+    [blankView.button setAttributedTitle:[[NSAttributedString alloc] initWithString:@"再来一次"] forState:UIControlStateNormal];
+    blankView.delegate = self;
     
     [self.view addSubview:blankView];
     
+    [blankView installBlankViewConstraints];
+
     
+    
+}
+
+- (void)blankView:(YJBlankView *)blankView didClickButton:(UIButton *)button{
+    NSLog(@"%@", button);
 }
 
 

@@ -35,5 +35,6 @@
 @property (nonatomic, strong) UITapGestureRecognizer * tapGesture;
 
 - (void)prepareForYJBlankViewReuse;
+- (void)installBlankViewConstraints;
 
 @end
