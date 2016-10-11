@@ -14,12 +14,15 @@
 @end
 
 @implementation YJBlankView
-@synthesize contentView = _contentView, titleLabel = _titleLabel, detailLabel = _detailLabel, imageView = _imageView, button = _button;
+@synthesize contentView = _contentView, titleLabel = _titleLabel, detailLabel = _detailLabel, imageView = _imageView, button = _button, customView = _customView;
 
 - (instancetype)init{
     self =  [super init];
     if (self) {
         [self addSubview:self.contentView];
+        [self.contentView addSubview:self.customView];
+
+        
     }
     return self;
 }
@@ -28,6 +31,33 @@
     [super didMoveToSuperview];
     
     self.frame = self.superview.bounds;
+    
+    
+    
+    self.contentView.frame  = self.frame;
+    
+    CGFloat contentW = self.contentView.bounds.size.width;
+    CGFloat contentH = self.contentView.bounds.size.height;
+    CGFloat contentCenterX = contentW * 0.5;
+    CGFloat contentCenterY = contentH * 0.5 + self.verticalOffset;
+    CGFloat verticalMargin = self.verticalMargin;
+    
+    
+    
+    UIView * textView = [[UIView alloc] initWithFrame:CGRectMake(60, 100, 30, 30)];
+    textView.backgroundColor = [UIColor redColor];
+    [self.contentView addSubview:textView];
+    
+    CGFloat titleLabelH = [self.titleLabel.text sizeWithAttributes:@{NSFontAttributeName:self.titleLabel.font}].height;
+    
+    NSLog(@"-- %@", self.titleLabel);
+    
+    self.titleLabel.frame = CGRectMake(0, contentCenterY, contentW, titleLabelH);
+    NSLog(@"%@", self.titleLabel);
+    
+    [self.contentView addSubview:self.titleLabel];
+
+    
     
     void(^fadeInBlock)(void) = ^{
         _contentView.alpha = 1.0f;
@@ -141,21 +171,33 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     
-    self.contentView.frame  = self.frame;
+//    self.contentView.frame  = self.frame;
+//
+//    CGFloat contentW = self.contentView.bounds.size.width;
+//    CGFloat contentH = self.contentView.bounds.size.height;
+//    CGFloat contentCenterX = contentW * 0.5;
+//    CGFloat contentCenterY = contentH * 0.5 + self.verticalOffset;
+//    CGFloat verticalMargin = self.verticalMargin;
+//    
+//    
+//    
+//    UIView * textView = [[UIView alloc] initWithFrame:CGRectMake(60, 100, 30, 30)];
+//    textView.backgroundColor = [UIColor redColor];
+//    [self.contentView addSubview:textView];
+//    
+//    CGFloat titleLabelH = [self.titleLabel.text sizeWithAttributes:@{NSFontAttributeName:self.titleLabel.font}].height;
+//    
+//    NSLog(@"-- %@", self.titleLabel);
+//
+//    self.titleLabel.frame = CGRectMake(0, contentCenterY, contentW, titleLabelH);
+//    NSLog(@"%@", self.titleLabel);
+//    
+//    [self.contentView addSubview:self.titleLabel];
 
-    CGFloat contentW = self.contentView.bounds.size.width;
-    CGFloat contentH = self.contentView.bounds.size.height;
-    CGFloat contentCenterX = contentW * 0.5;
-    CGFloat contentCenterY = contentH * 0.5 + self.verticalOffset;
-    CGFloat verticalMargin = self.verticalMargin;
     
-    CGFloat titleLabelH = [self.titleLabel.text sizeWithAttributes:@{NSFontAttributeName:self.titleLabel.font}].height;
-    NSLog(@"-- %@", self.titleLabel);
-
-    self.titleLabel.frame = CGRectMake(0, contentCenterY, contentW, titleLabelH);
-    NSLog(@"%@", self.titleLabel);
-    CGFloat imageViewCenterY = contentCenterY - titleLabelH * 0.5 - self.imageView.bounds.size.height * 0.5;
-    self.imageView.center = CGPointMake(contentCenterX, imageViewCenterY);
+    
+//    CGFloat imageViewCenterY = contentCenterY - titleLabelH * 0.5 - self.imageView.bounds.size.height * 0.5;
+//    self.imageView.center = CGPointMake(contentCenterX, imageViewCenterY);
     
 }
 
@@ -212,7 +254,10 @@
     }
     _customView = customView;
     _customView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.contentView addSubview:_customView];
+}
+
+- (UIView *)customView{
+    return _customView;
 }
 
 - (UIImageView *)imageView{
@@ -229,7 +274,7 @@
 
 - (UILabel *)titleLabel{
     if (!_titleLabel){
-        _titleLabel = [[UILabel alloc] init];
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         _titleLabel.backgroundColor = [UIColor clearColor];
         _titleLabel.font = [UIFont systemFontOfSize:17.0f];
@@ -238,7 +283,6 @@
         _titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
         _titleLabel.numberOfLines = 0;
         _titleLabel.accessibilityIdentifier = @"titleLabelInit";
-        [self.contentView addSubview:_titleLabel];
     }
     return _titleLabel;
 }
