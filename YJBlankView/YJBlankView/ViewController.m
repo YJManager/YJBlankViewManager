@@ -24,7 +24,7 @@
     blankView.detailLabel.text = @"detail";
     [blankView.button setAttributedTitle:[[NSAttributedString alloc] initWithString:@"再来一次"] forState:UIControlStateNormal];
     blankView.delegate = self;
-    
+    blankView.fadeInOnDisplay = YES;
     [self.view addSubview:blankView];
     
     [blankView installBlankViewConstraints];

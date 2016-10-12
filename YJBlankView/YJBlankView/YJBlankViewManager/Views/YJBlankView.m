@@ -7,7 +7,6 @@
 //
 
 #import "YJBlankView.h"
-#import "UIView+YJBlankView.h"
 
 @interface YJBlankView ()
 
@@ -20,9 +19,6 @@
     self =  [super init];
     if (self) {
         [self addSubview:self.contentView];
-        [self.contentView addSubview:self.customView];
-
-        
     }
     return self;
 }
@@ -43,15 +39,10 @@
     }
 }
 
-
 #pragma mark - APIS
 - (void)prepareForYJBlankViewReuse{
     
-    for (NSInteger i = 0; i < self.contentView.subviews.count; i++) {
-        __kindof UIView * subView = self.contentView.subviews[i];
-        [subView removeFromSuperview];
-        subView = nil;
-    }
+    [self.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
     [self removeConstraints:self.constraints];
     [_contentView removeConstraints:_contentView.constraints];
@@ -60,9 +51,8 @@
 
 - (void)installBlankViewConstraints{
     
-    NSLayoutConstraint * centerXConstraint = [self equallyRelatedConstraintWithView:self.contentView attribute:NSLayoutAttributeCenterX];
-    NSLayoutConstraint *centerYConstraint = [self equallyRelatedConstraintWithView:self.contentView attribute:NSLayoutAttributeCenterY];
-    
+    NSLayoutConstraint * centerXConstraint = [self equallyRelatedConstraintWithView:self.contentView attribute:NSLayoutAttributeCenterX toItem:self];
+    NSLayoutConstraint * centerYConstraint = [self equallyRelatedConstraintWithView:self.contentView attribute:NSLayoutAttributeCenterY toItem:self];
     [self addConstraint:centerXConstraint];
     [self addConstraint:centerYConstraint];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contentView]|" options:0 metrics:nil views:@{@"contentView": self.contentView}]];
@@ -89,7 +79,7 @@
             
             [subviewStrings addObject:@"imageView"];
             viewsDic[[subviewStrings lastObject]] = _imageView;
-            [self.contentView addConstraint:[self.contentView equallyRelatedConstraintWithView:_imageView attribute:NSLayoutAttributeCenterX]];
+            [self.contentView addConstraint:[self equallyRelatedConstraintWithView:_imageView attribute:NSLayoutAttributeCenterX toItem:self.contentView]];
         }else{
             [_imageView removeFromSuperview];
             _imageView = nil;
@@ -175,6 +165,10 @@
     return NO;
 }
 
+- (NSLayoutConstraint *)equallyRelatedConstraintWithView:(UIView *)view1 attribute:(NSLayoutAttribute)attribute toItem:(nullable id)view2{
+    return [NSLayoutConstraint constraintWithItem:view1 attribute:attribute relatedBy:NSLayoutRelationEqual toItem:view2 attribute:attribute multiplier:1.0 constant:0.0];
+}
+
 #pragma mark - Lazy
 - (UIView *)contentView{
     if (_contentView == nil) {
@@ -195,10 +189,7 @@
     }
     _customView = customView;
     _customView.translatesAutoresizingMaskIntoConstraints = NO;
-}
-
-- (UIView *)customView{
-    return _customView;
+    [self.contentView addSubview:_customView];
 }
 
 - (UIImageView *)imageView{
@@ -261,7 +252,7 @@
 
 - (void)blankViewButtonClickAction:(UIButton *)sender{
     if (self.delegate && [self.delegate respondsToSelector:@selector(blankView:didClickButton:)]) {
-        [self blankViewButtonClickAction:sender];
+        [self.delegate blankView:self didClickButton:sender];
     }
 }
 
