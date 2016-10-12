@@ -55,6 +55,7 @@
     NSLayoutConstraint * centerYConstraint = [self equallyRelatedConstraintWithView:self.contentView attribute:NSLayoutAttributeCenterY toItem:self];
     [self addConstraint:centerXConstraint];
     [self addConstraint:centerYConstraint];
+    
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contentView]|" options:0 metrics:nil views:@{@"contentView": self.contentView}]];
     
     if (self.verticalOffset != 0 && self.constraints.count > 0) {
