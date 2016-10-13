@@ -56,21 +56,21 @@
     [self addConstraint:centerXConstraint];
     [self addConstraint:centerYConstraint];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contentView]|" options:0 metrics:nil views:@{@"contentView": self.contentView}]];
-    
     if (self.verticalOffset != 0 && self.constraints.count > 0) {
         centerYConstraint.constant = self.verticalOffset;
     }
     
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contentView]|" options:0 metrics:nil views:@{@"contentView": self.contentView}]];
+    
     if (_customView) {
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[contentView]|" options:0 metrics:nil views:@{@"contentView": self.contentView}]]; //  这个貌似是多余的 待验证
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[contentView]|" options:0 metrics:nil views:@{@"contentView": self.contentView}]];
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[customView]|" options:0 metrics:nil views:@{@"customView":_customView}]];
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[customView]|" options:0 metrics:nil views:@{@"customView":_customView}]];
     }else {
         CGFloat width = CGRectGetWidth(self.frame)?:CGRectGetWidth([UIScreen mainScreen].bounds);
         CGFloat padding = roundf(width/16.0);
-        CGFloat verticalSpace = self.verticalMargin?:11.0; // Default is 11 pts
+        CGFloat verticalSpace = self.verticalMargin?:5.0;
         
         NSMutableArray * subviewStrings = [NSMutableArray array];
         NSMutableDictionary * viewsDic = [NSMutableDictionary dictionary];
@@ -116,7 +116,7 @@
             _button = nil;
         }
         
-        NSMutableString *verticalFormat = [[NSMutableString alloc] init];
+        NSMutableString * verticalFormat = [[NSMutableString alloc] init];
         
         for (int i = 0; i < subviewStrings.count; i++) {
             NSString * string = subviewStrings[i];
