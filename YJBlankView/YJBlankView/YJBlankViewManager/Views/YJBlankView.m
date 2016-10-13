@@ -89,6 +89,7 @@
         if ([self _canShowTitle]) {
             [subviewStrings addObject:@"titleLabel"];
             viewsDic[[subviewStrings lastObject]] = _titleLabel;
+            _titleLabel.backgroundColor = [UIColor redColor];
             [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(padding@750)-[titleLabel(>=0)]-(padding@750)-|" options:0 metrics:metrics views:viewsDic]];
         }else {
             [_titleLabel removeFromSuperview];
@@ -98,7 +99,8 @@
         if ([self _canShowDetail]) {
             [subviewStrings addObject:@"detailLabel"];
             viewsDic[[subviewStrings lastObject]] = _detailLabel;
-            
+            _detailLabel.backgroundColor = [UIColor greenColor];
+
             [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(padding@750)-[detailLabel(>=0)]-(padding@750)-|" options:0 metrics:metrics views:viewsDic]];
         }else {
             [_detailLabel removeFromSuperview];
@@ -109,7 +111,8 @@
             
             [subviewStrings addObject:@"button"];
             viewsDic[[subviewStrings lastObject]] = _button;
-            
+            _button.backgroundColor = [UIColor cyanColor];
+
             [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(padding@750)-[button(>=0)]-(padding@750)-|" options:0 metrics:metrics views:viewsDic]];
         }else {
             [_button removeFromSuperview];
