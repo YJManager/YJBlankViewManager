@@ -74,7 +74,7 @@
         
         NSMutableArray * subviewStrings = [NSMutableArray array];
         NSMutableDictionary * viewsDic = [NSMutableDictionary dictionary];
-        NSDictionary *metrics = @{@"padding": @(padding)};
+        NSDictionary * metrics = @{@"padding": @(padding)};
         
         if ([self _canShowImage]) {
             
@@ -90,7 +90,17 @@
             [subviewStrings addObject:@"titleLabel"];
             viewsDic[[subviewStrings lastObject]] = _titleLabel;
             _titleLabel.backgroundColor = [UIColor redColor];
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(padding@750)-[titleLabel(>=0)]-(padding@750)-|" options:0 metrics:metrics views:viewsDic]];
+            NSLog(@"%f", self.contentView.frame.size.width);
+
+            if (self.titleLabel.frame.size.width > 0) {
+                NSDictionary * titleMetrics = @{@"titleWidth": @(self.titleLabel.frame.size.width )};
+                [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[titleLabel(titleWidth)]" options:0 metrics:titleMetrics views:viewsDic]];
+               [self.contentView addConstraint:[self equallyRelatedConstraintWithView:self.titleLabel attribute:NSLayoutAttributeCenterX toItem:self.contentView]];
+            }else{
+            
+//                [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(padding@750)-[titleLabel(>=0)]-(padding@750)-|" options:0 metrics:metrics views:viewsDic]];
+            }
+            
         }else {
             [_titleLabel removeFromSuperview];
             _titleLabel = nil;
@@ -112,7 +122,7 @@
             [subviewStrings addObject:@"button"];
             viewsDic[[subviewStrings lastObject]] = _button;
             _button.backgroundColor = [UIColor cyanColor];
-
+            
             [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(padding@750)-[button(>=0)]-(padding@750)-|" options:0 metrics:metrics views:viewsDic]];
         }else {
             [_button removeFromSuperview];
@@ -129,6 +139,8 @@
             }
         }
         
+        NSLog(@"%@", verticalFormat);
+
         if (verticalFormat.length > 0) {
             [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:|%@|", verticalFormat] options:0 metrics:metrics views:viewsDic]];
         }
@@ -178,7 +190,7 @@
     if (_contentView == nil) {
         _contentView = [[UIView alloc] init];
         _contentView.translatesAutoresizingMaskIntoConstraints = NO;
-        _contentView.backgroundColor = [UIColor clearColor];
+        _contentView.backgroundColor = [UIColor yellowColor];
         _contentView.accessibilityIdentifier = @"contentViewInit";
         _contentView.alpha = 0;
     }

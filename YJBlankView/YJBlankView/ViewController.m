@@ -21,8 +21,11 @@
     YJBlankView * blankView = [[YJBlankView alloc] init];
     blankView.imageView.image = [UIImage imageNamed:@"noDataDefault"];
     blankView.titleLabel.text = @"没有网络";
+    blankView.titleLabel.frame = CGRectMake(0, 0, 160, 44);
+    blankView.titleLabel.font = [UIFont systemFontOfSize:24.0f];
     blankView.detailLabel.text = @"您可以尝试再次点击";
     [blankView.button setAttributedTitle:[[NSAttributedString alloc] initWithString:@"再来一次"] forState:UIControlStateNormal];
+    blankView.button.frame = CGRectMake(0, 0, 100, 40);
     blankView.delegate = self;
     blankView.fadeInOnDisplay = YES;
     [self.view addSubview:blankView];
