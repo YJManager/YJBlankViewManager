@@ -2,8 +2,8 @@
 //  UICollectionView+YJBlankView.m
 //  YJBlankView
 //
-//  Created by YJHou on 16/10/10.
-//  Copyright © 2016年 YJHou. All rights reserved.
+//  Created by YJHou on 14/1/10.
+//  Copyright © 2014年 YJManager. All rights reserved.
 //
 
 #import "UICollectionView+YJBlankView.h"

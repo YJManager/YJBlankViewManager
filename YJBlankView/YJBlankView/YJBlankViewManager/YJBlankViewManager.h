@@ -9,6 +9,9 @@
 #ifndef YJBlankViewManager_h
 #define YJBlankViewManager_h
 
+#define YJSCREENWIDTH [UIScreen mainScreen].bounds.size.width
+#define YJSCREENHEIGHT [UIScreen mainScreen].bounds.size.height
+
 #import "UIViewController+YJBlankView.h"
 #import "UIScrollView+YJBlankView.h"
 #import "UITableView+YJBlankView.h"

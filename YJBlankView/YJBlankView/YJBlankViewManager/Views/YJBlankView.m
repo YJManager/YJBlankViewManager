@@ -49,9 +49,15 @@
     
     [self.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
+    _titleLabel = nil;
+    _detailLabel = nil;
+    _imageView = nil;
+    _button = nil;
+    _customView = nil;
+    
     [self removeConstraints:self.constraints];
     [_contentView removeConstraints:_contentView.constraints];
-    _contentView = nil;
+
 }
 
 - (void)installBlankViewConstraints{
@@ -67,6 +73,10 @@
     
     if (_customView) {
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[contentView]|" options:0 metrics:nil views:@{@"contentView": self.contentView}]];
+        
+        if (_customView.superview == nil) {
+            [self.contentView addSubview:_customView];
+        }
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[customView]|" options:0 metrics:nil views:@{@"customView":_customView}]];
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[customView]|" options:0 metrics:nil views:@{@"customView":_customView}]];
