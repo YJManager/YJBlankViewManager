@@ -2,8 +2,8 @@
 //  YJBlankView.m
 //  YJBlankView
 //
-//  Created by YJHou on 16/10/10.
-//  Copyright © 2016年 YJHou. All rights reserved.
+//  Created by YJHou on 14/1/10.
+//  Copyright © 2014年 YJManager. All rights reserved.
 //
 
 #import "YJBlankView.h"
@@ -21,6 +21,11 @@
         [self addSubview:self.contentView];
     }
     return self;
+}
+
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    [self addSubview:self.contentView];
 }
 
 - (void)didMoveToSuperview{
@@ -51,15 +56,13 @@
 
 - (void)installBlankViewConstraints{
     
-    NSLayoutConstraint * centerXConstraint = [self equallyRelatedConstraintWithView:self.contentView attribute:NSLayoutAttributeCenterX toItem:self];
+    [self addConstraint:[self equallyRelatedConstraintWithView:self.contentView attribute:NSLayoutAttributeCenterX toItem:self]];
     NSLayoutConstraint * centerYConstraint = [self equallyRelatedConstraintWithView:self.contentView attribute:NSLayoutAttributeCenterY toItem:self];
-    [self addConstraint:centerXConstraint];
-    [self addConstraint:centerYConstraint];
-    
     if (self.verticalOffset != 0 && self.constraints.count > 0) {
         centerYConstraint.constant = self.verticalOffset;
     }
-    
+    [self addConstraint:centerYConstraint];
+
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contentView]|" options:0 metrics:nil views:@{@"contentView": self.contentView}]];
     
     if (_customView) {
@@ -70,18 +73,16 @@
     }else {
         CGFloat width = CGRectGetWidth(self.frame)?:CGRectGetWidth([UIScreen mainScreen].bounds);
         CGFloat padding = roundf(width/16.0);
-        CGFloat verticalSpace = self.verticalMargin?:5.0;
-        
+        CGFloat verticalAutoMargin = (self.verticalAutoMargin > 0)?:5.0f;
         NSMutableDictionary * viewsDic = [NSMutableDictionary dictionary];
         NSDictionary * metrics = @{@"padding": @(padding)};
         
-        // 竖直方向的配置
         NSMutableString * verticalFormat = [[NSMutableString alloc] init];
         
         if ([self _canShowImage]) {
             NSString * viewString = @"imageView";
             [viewsDic setObject:_imageView forKey:viewString];
-            [verticalFormat appendFormat:@"[%@]-(%.f@750)-", viewString, verticalSpace];
+            [verticalFormat appendFormat:@"[%@]", viewString];
             [self.contentView addConstraint:[self equallyRelatedConstraintWithView:_imageView attribute:NSLayoutAttributeCenterX toItem:self.contentView]];
         }else{
             [_imageView removeFromSuperview];
@@ -92,20 +93,23 @@
             
             NSString * viewString = @"titleLabel";
             [viewsDic setObject:_titleLabel forKey:viewString];
-            [verticalFormat appendFormat:@"[%@]-(%.f@750)-", viewString, verticalSpace];
-            _titleLabel.backgroundColor = [UIColor redColor];
-            
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(padding@750)-[titleLabel(>=0)]-(padding@750)-|" options:0 metrics:metrics views:viewsDic]];
 
-//            if (self.titleLabel.frame.size.width > 0) {
-//                NSDictionary * titleMetrics = @{@"titleWidth": @(self.titleLabel.frame.size.width )};
-//                [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[titleLabel(titleWidth)]" options:0 metrics:titleMetrics views:viewsDic]];
-//               [self.contentView addConstraint:[self equallyRelatedConstraintWithView:self.titleLabel attribute:NSLayoutAttributeCenterX toItem:self.contentView]];
-//            }else{
-//            
-//                [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(padding@750)-[titleLabel(>=0)]-(padding@750)-|" options:0 metrics:metrics views:viewsDic]];
-//            }
+            NSString * titleVerticalFormat = nil;
+            CGFloat titleY = self.titleLabel.frame.origin.y, titleWidth = self.titleLabel.frame.size.width, titleHeight = self.titleLabel.frame.size.height;
+            if (titleWidth > 0 && titleHeight > 0) {
+                NSDictionary * titleMetrics = @{@"titleWidth": @(titleWidth)};
+                [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[titleLabel(titleWidth)]" options:0 metrics:titleMetrics views:viewsDic]];
+               [self.contentView addConstraint:[self equallyRelatedConstraintWithView:self.titleLabel attribute:NSLayoutAttributeCenterX toItem:self.contentView]];
+                
+                titleVerticalFormat = [NSString stringWithFormat:@"-(%.f@750)-[%@(%.f)]", titleY, viewString, titleHeight];
+                
+            }else{
+                titleVerticalFormat = [NSString stringWithFormat:@"-(%.f@750)-[%@]",verticalAutoMargin, viewString];
+                [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(padding@750)-[titleLabel(>=0)]-(padding@750)-|" options:0 metrics:metrics views:viewsDic]];
+            }
             
+            [verticalFormat appendString:titleVerticalFormat];
+            _titleLabel.backgroundColor = [UIColor redColor];
         }else {
             [_titleLabel removeFromSuperview];
             _titleLabel = nil;
@@ -115,10 +119,23 @@
             
             NSString * viewString = @"detailLabel";
             [viewsDic setObject:_detailLabel forKey:viewString];
-            [verticalFormat appendFormat:@"[%@]-(%.f@750)-", viewString, verticalSpace];
+            
+            NSString * detailVerticalFormat = nil;
+            CGFloat detailY = self.detailLabel.frame.origin.y, detailWidth = self.detailLabel.frame.size.width, detailHeight = self.detailLabel.frame.size.height;
+            if (detailWidth > 0 && detailHeight > 0) {
+                NSDictionary * detalMetrics = @{@"detailWidth":@(detailWidth)};
+                [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[detailLabel(detailWidth)]" options:0 metrics:detalMetrics views:viewsDic]];
+                [self.contentView addConstraint:[self equallyRelatedConstraintWithView:self.detailLabel attribute:NSLayoutAttributeCenterX toItem:self.contentView]];
+                detailVerticalFormat = [NSString stringWithFormat:@"-(%.f@750)-[%@(%.f)]", detailY, viewString, detailHeight];
+                
+            }else{
+                detailVerticalFormat = [NSString stringWithFormat:@"-(%.f@750)-[%@]",verticalAutoMargin, viewString];
+                [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(padding@750)-[detailLabel(>=0)]-(padding@750)-|" options:0 metrics:metrics views:viewsDic]];
+            }
+            
+            
+            [verticalFormat appendString:detailVerticalFormat];
             _detailLabel.backgroundColor = [UIColor greenColor];
-
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(padding@750)-[detailLabel(>=0)]-(padding@750)-|" options:0 metrics:metrics views:viewsDic]];
         }else {
             [_detailLabel removeFromSuperview];
             _detailLabel = nil;
@@ -128,17 +145,26 @@
             
             NSString * viewString = @"button";
             [viewsDic setObject:_button forKey:viewString];
-            [verticalFormat appendFormat:@"[%@]", viewString];
-        
+            
+            NSString * buttonVerticalFormat = nil;
+            CGFloat buttonY = self.button.frame.origin.y, buttonWidth = self.button.frame.size.width, buttonHeight = self.button.frame.size.height;
+            if (buttonWidth > 0 && buttonHeight > 0) {
+                NSDictionary * buttonMetrics = @{@"buttonWidth":@(buttonWidth)};
+                [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[button(buttonWidth)]" options:0 metrics:buttonMetrics views:viewsDic]];
+                [self.contentView addConstraint:[self equallyRelatedConstraintWithView:self.button attribute:NSLayoutAttributeCenterX toItem:self.contentView]];
+                buttonVerticalFormat = [NSString stringWithFormat:@"-(%.f@750)-[%@(%.f)]", buttonY, viewString, buttonHeight];
+                
+            }else{
+                buttonVerticalFormat = [NSString stringWithFormat:@"-(%.f@750)-[%@]", verticalAutoMargin, viewString];
+                [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(padding@750)-[button(>=0)]-(padding@750)-|" options:0 metrics:metrics views:viewsDic]];
+            }
+            [verticalFormat appendString:buttonVerticalFormat];
             _button.backgroundColor = [UIColor cyanColor];
             
-            [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(padding@750)-[button(>=0)]-(padding@750)-|" options:0 metrics:metrics views:viewsDic]];
         }else {
             [_button removeFromSuperview];
             _button = nil;
         }
-        
-        NSLog(@"%@", verticalFormat);
 
         if (verticalFormat.length > 0) {
             [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:|%@|", verticalFormat] options:0 metrics:metrics views:viewsDic]];

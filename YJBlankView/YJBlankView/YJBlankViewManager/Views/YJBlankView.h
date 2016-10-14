@@ -1,9 +1,9 @@
 //
-//  YJBlankView.h
+//  YJBlankView.m
 //  YJBlankView
 //
-//  Created by YJHou on 16/10/10.
-//  Copyright © 2016年 YJHou. All rights reserved.
+//  Created by YJHou on 14/1/10.
+//  Copyright © 2014年 YJManager. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -29,7 +29,7 @@
 @property (nonatomic, strong)   UIView         * customView;
 
 @property (nonatomic, assign) CGFloat verticalOffset;
-@property (nonatomic, assign) CGFloat verticalMargin;
+@property (nonatomic, assign) CGFloat verticalAutoMargin; // 默认自动布局的间距
 
 @property (nonatomic, assign) BOOL fadeInOnDisplay;
 @property (nonatomic, strong) UITapGestureRecognizer * tapGesture;
