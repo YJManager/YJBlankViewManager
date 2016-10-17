@@ -197,6 +197,7 @@ static char const * const kEmptyDataView   =     "emptyDataView";
 }
 
 // >>>>>>>>>> Setting Support <<<<<<<<<<<<
+// 1. 是否可以展示
 - (BOOL)_canDisplay{
     if (self.emptyDataSource && [self.emptyDataSource conformsToProtocol:@protocol(YJEmptyDataSource)]) {
         // 备用支持UITableView、UICollectionView、UIScrollView类型
@@ -207,6 +208,7 @@ static char const * const kEmptyDataView   =     "emptyDataView";
     return NO;
 }
 
+// 总个数
 - (NSInteger)_itemsCount{
     
     NSInteger items = 0;
