@@ -44,7 +44,6 @@ static char const * const kreloadClickBlockKey      =  "kreloadClickBlockKey";
 //}
 
 #pragma mark - Setter & Getter
-// 1.>>>>>>> install <<<<<<<<<<
 - (void)setInstallYJLoading:(BOOL)installYJLoading{
     if (self.installYJLoading == installYJLoading) return;
     
@@ -58,7 +57,6 @@ static char const * const kreloadClickBlockKey      =  "kreloadClickBlockKey";
     return [objc_getAssociatedObject(self, kInstallYJLoadingKey) boolValue];
 }
 
-// 2.>>>>>>> loadedImage <<<<<<<<<<<
 -(void)setLoadedImageName:(NSString *)loadedImageName{
     objc_setAssociatedObject(self, kLoadedImgNameKey, loadedImageName, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
@@ -66,7 +64,6 @@ static char const * const kreloadClickBlockKey      =  "kreloadClickBlockKey";
     return objc_getAssociatedObject(self, kLoadedImgNameKey);
 }
 
-// 3.>>>>>>>> titleForNoDataView <<<<<<<
 - (void)setTitleForNoDataView:(NSString *)titleForNoDataView{
     objc_setAssociatedObject(self, kTitleForNoDataViewKey, titleForNoDataView, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
@@ -74,7 +71,6 @@ static char const * const kreloadClickBlockKey      =  "kreloadClickBlockKey";
     return objc_getAssociatedObject(self, kTitleForNoDataViewKey);
 }
 
-// 4.>>>>>> kDetailForNoDataView <<<<<<
 - (void)setDetailForNoDataView:(NSString *)detailForNoDataView{
     objc_setAssociatedObject(self, kDetailForNoDataView, detailForNoDataView, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
@@ -82,7 +78,6 @@ static char const * const kreloadClickBlockKey      =  "kreloadClickBlockKey";
     return objc_getAssociatedObject(self, kDetailForNoDataView);
 }
 
-// 5. >>>>>> kButtonTitleKey <<<<<
 - (void)setButtonTitle:(NSString *)buttonTitle{
     objc_setAssociatedObject(self, kButtonTitleKey, buttonTitle, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
