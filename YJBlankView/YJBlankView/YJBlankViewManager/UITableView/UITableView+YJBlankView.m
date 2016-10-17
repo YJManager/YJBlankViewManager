@@ -26,25 +26,21 @@ static char const * const kreloadClickBlockKey      =  "kreloadClickBlockKey";
 @implementation UITableView (YJBlankView)
 
 //+ (void)load{
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-//        SEL systemSel = @selector(initWithFrame:style:);
-//        SEL swizzSel = @selector(swiz_init);
-//        Method systemMethod = class_getInstanceMethod([self class], systemSel);
-//        Method swizzMethod = class_getInstanceMethod([self class], swizzSel);
 //
-//        BOOL isAdd = class_addMethod(self, systemSel, method_getImplementation(swizzMethod), method_getTypeEncoding(swizzMethod));
-//        if (isAdd) {
-//            class_replaceMethod(self, swizzSel, method_getImplementation(systemMethod), method_getTypeEncoding(systemMethod));
-//        }else{
-//            method_exchangeImplementations(systemMethod, swizzMethod);
-//        }
-//    });
+//    Method changeMethod = class_getInstanceMethod(self, @selector(abcInBlankView));
+//    Method systemMethod = class_getInstanceMethod(self, @selector(initWithFrame:style:));
+//    
+//    BOOL isAdd = class_addMethod(self, @selector(initWithFrame:style:), method_getImplementation(changeMethod), method_getTypeEncoding(changeMethod));
+//    
+//    if (isAdd) {
+//        class_replaceMethod(self, @selector(abcInBlankView), method_getImplementation(systemMethod), method_getTypeEncoding(systemMethod));
+//    }else{
+//        method_exchangeImplementations(systemMethod, changeMethod);
+//    }
 //}
-
-//- (void)swiz_init{
-//     NSLog(@"swizzle");
-//    [self swiz_init];
+//
+//- (void)abcInBlankView{
+//
 //}
 
 #pragma mark - Setter & Getter
