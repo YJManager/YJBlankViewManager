@@ -8,6 +8,8 @@
 
 #import "UIViewController+YJBlankView.h"
 
+
+
 @implementation UIViewController (YJBlankView)
 
 @end
