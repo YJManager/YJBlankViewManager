@@ -34,7 +34,9 @@
 @property (nonatomic, assign) BOOL fadeInOnDisplay;
 @property (nonatomic, strong) UITapGestureRecognizer * tapGesture;
 
-- (void)prepareForYJBlankViewReuse;
+/** 清除之前的所有约束 */
+- (void)unInstallBlankViewConstraints;
+/** 添加约束 */
 - (void)installBlankViewConstraints;
 
 @end

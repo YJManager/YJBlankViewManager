@@ -45,7 +45,7 @@
 }
 
 #pragma mark - APIS
-- (void)prepareForYJBlankViewReuse{
+- (void)unInstallBlankViewConstraints{
     
     [self.contentView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     

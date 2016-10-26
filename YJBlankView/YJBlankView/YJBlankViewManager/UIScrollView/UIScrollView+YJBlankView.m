@@ -77,7 +77,7 @@ static char const * const kEmptyDataView   =     "emptyDataView";
 - (void)_invalidate{
     [self _willDisappear];
     if (self.emptyDataView) {
-        [self.emptyDataView prepareForYJBlankViewReuse];
+        [self.emptyDataView unInstallBlankViewConstraints];
         [self.emptyDataView removeFromSuperview];
         [self setEmptyDataView:nil];
     }
@@ -100,7 +100,7 @@ static char const * const kEmptyDataView   =     "emptyDataView";
             }
         }
         
-        [view prepareForYJBlankViewReuse];
+        [view unInstallBlankViewConstraints];
         
         UIView * customView = [self emptyCustomView];
         if (customView) {
