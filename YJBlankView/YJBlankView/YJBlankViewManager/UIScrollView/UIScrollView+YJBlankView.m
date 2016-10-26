@@ -413,6 +413,36 @@ void _original_implementation(id self, SEL _cmd){
     return CGRectZero;
 }
 
+- (CGRect)buttonCornerRadiusForState:(UIControlState)state{
+    if (self.emptyDataSource && [self.emptyDataSource respondsToSelector:@selector(emptyViewButtonCornerRadiusInView:forState:)]) {
+        CGRect btnFrame = [self.emptyDataSource emptyViewButtonCornerRadiusInView:self forState:state];
+        if (btnFrame.size.width > 0) {
+            return btnFrame;
+        };
+    }
+    return CGRectZero;
+}
+
+- (CGRect)buttonFrameForState:(UIControlState)state{
+    if (self.emptyDataSource && [self.emptyDataSource respondsToSelector:@selector(emptyViewButtonFrameInView:forState:)]) {
+        CGRect btnFrame = [self.emptyDataSource emptyViewButtonFrameInView:self forState:state];
+        if (btnFrame.size.width > 0) {
+            return btnFrame;
+        };
+    }
+    return CGRectZero;
+}
+
+- (CGRect)buttonFrameForState:(UIControlState)state{
+    if (self.emptyDataSource && [self.emptyDataSource respondsToSelector:@selector(emptyViewButtonFrameInView:forState:)]) {
+        CGRect btnFrame = [self.emptyDataSource emptyViewButtonFrameInView:self forState:state];
+        if (btnFrame.size.width > 0) {
+            return btnFrame;
+        };
+    }
+    return CGRectZero;
+}
+
 - (UIColor *)emptyBackgroundColor{
     if (self.emptyDataSource && [self.emptyDataSource respondsToSelector:@selector(emptyViewBackgroundColorInView:)]) {
         UIColor *color = [self.emptyDataSource emptyViewBackgroundColorInView:self];
