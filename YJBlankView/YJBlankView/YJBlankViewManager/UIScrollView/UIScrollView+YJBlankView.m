@@ -145,7 +145,7 @@ static char const * const kEmptyDataView   =     "emptyDataView";
                 view.button.layer.masksToBounds = YES;
                 [view.button.layer setCornerRadius:[self buttonFrameForState:UIControlStateNormal].size.height * 0.5];
                 [view.button.layer setBorderWidth:1];
-                [view.button.layer setBorderColor:[UIColor whiteColor].CGColor];
+                [view.button.layer setBorderColor:[UIColor redColor].CGColor];
             }
         }
         
