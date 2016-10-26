@@ -79,6 +79,10 @@
             }
         }
         
+        if (self.dataSouce.count == 0) {
+            self.tableView.installYJLoading = NO;
+        }
+        
         [self.tableView reloadData];
     });
 }

@@ -35,6 +35,9 @@
 /** buttonBackgroundImage */
 - (UIImage *)emptyViewButtonBackgroundImageInView:(UIScrollView *)scrollView forState:(UIControlState)state;
 
+/** buttonFrame */
+- (CGRect)emptyViewButtonFrameInView:(UIScrollView *)scrollView forState:(UIControlState)state;
+
 /** backgroundColor Default is ClearColor */
 - (UIColor *)emptyViewBackgroundColorInView:(UIScrollView *)scrollView;
 

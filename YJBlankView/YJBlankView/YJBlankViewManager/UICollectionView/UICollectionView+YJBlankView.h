@@ -7,7 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIScrollView+YJBlankView.h"
 
-@interface UICollectionView (YJBlankView)
+typedef void (^reloadClickActionBlock)();
+
+@interface UICollectionView (YJBlankView)<YJEmptyDataSource, YJEmptyDelegate>
+
+/** YES is install YJLoading */
+@property (nonatomic, assign) BOOL installYJLoading;
+/** custom Image */
+@property (nonatomic, copy) NSString * loadedImageName;
+/** nodata Title */
+@property (nonatomic, copy) NSString * titleForNoDataView;
+/** detailForNoDataView */
+@property (nonatomic, copy) NSString * detailForNoDataView;
+/** button title */
+@property (nonatomic, copy) NSString * buttonTitle;
+/** buttonNormalColor */
+@property (nonatomic, strong) UIColor * buttonNormalColor;
+/** buttonHighlightColor */
+@property (nonatomic, strong) UIColor * buttonHighlightColor;
+/** tableView Center Offset */
+@property (nonatomic, assign) CGFloat verticalOffsetForNoDataView;
+
+- (void)loadingWithClickBlock:(reloadClickActionBlock)block;
 
 @end

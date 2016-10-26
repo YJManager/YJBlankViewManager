@@ -140,6 +140,9 @@ static char const * const kEmptyDataView   =     "emptyDataView";
                 [view.button setBackgroundImage:[self buttonBackgroundImageForState:UIControlStateNormal] forState:UIControlStateNormal];
                 [view.button setBackgroundImage:[self buttonBackgroundImageForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
             }
+            if ([self buttonFrameForState:UIControlStateNormal].size.width > 0) {
+                view.button.frame = [self buttonFrameForState:UIControlStateNormal];
+            }
         }
         
         view.verticalOffset = [self verticalOffset];
@@ -394,6 +397,16 @@ void _original_implementation(id self, SEL _cmd){
         return image;
     }
     return nil;
+}
+
+- (CGRect)buttonFrameForState:(UIControlState)state{
+    if (self.emptyDataSource && [self.emptyDataSource respondsToSelector:@selector(emptyViewButtonFrameInView:forState:)]) {
+        CGRect btnFrame = [self.emptyDataSource emptyViewButtonFrameInView:self forState:state];
+        if (btnFrame.size.width > 0) {
+            return btnFrame;
+        };
+    }
+    return CGRectZero;
 }
 
 - (UIColor *)emptyBackgroundColor{

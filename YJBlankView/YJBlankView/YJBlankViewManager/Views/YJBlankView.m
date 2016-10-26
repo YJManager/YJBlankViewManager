@@ -225,7 +225,7 @@
     if (_contentView == nil) {
         _contentView = [[UIView alloc] init];
         _contentView.translatesAutoresizingMaskIntoConstraints = NO;
-        _contentView.backgroundColor = [UIColor yellowColor];
+        _contentView.backgroundColor = [UIColor clearColor];
         _contentView.accessibilityIdentifier = @"contentViewInit";
         _contentView.alpha = 0;
     }
