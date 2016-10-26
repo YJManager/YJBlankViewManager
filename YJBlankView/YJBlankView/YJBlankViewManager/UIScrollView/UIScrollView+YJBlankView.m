@@ -142,6 +142,10 @@ static char const * const kEmptyDataView   =     "emptyDataView";
             }
             if ([self buttonFrameForState:UIControlStateNormal].size.width > 0) {
                 view.button.frame = [self buttonFrameForState:UIControlStateNormal];
+                view.button.layer.masksToBounds = YES;
+                [view.button.layer setCornerRadius:[self buttonFrameForState:UIControlStateNormal].size.height * 0.5];
+                [view.button.layer setBorderWidth:1];
+                [view.button.layer setBorderColor:[UIColor whiteColor].CGColor];
             }
         }
         

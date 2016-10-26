@@ -217,6 +217,10 @@ static char const * const kreloadClickBlockKey      =  "kreloadClickBlockKey";
     }
 }
 
+- (CGRect)emptyViewButtonFrameInView:(UIScrollView *)scrollView forState:(UIControlState)state{
+    return CGRectMake(0, 20, 120, 40);
+}
+
 - (CGFloat)emptyViewVerticalOffsetInView:(UIScrollView *)scrollView{
     if (self.verticalOffsetForNoDataView != 0) {
         return self.verticalOffsetForNoDataView;
