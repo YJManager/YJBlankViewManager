@@ -35,14 +35,8 @@
 /** buttonBackgroundImage */
 - (UIImage *)emptyViewButtonBackgroundImageInView:(UIScrollView *)scrollView forState:(UIControlState)state;
 
-/** buttonFrame */
-- (CGRect)emptyViewButtonFrameInView:(UIScrollView *)scrollView forState:(UIControlState)state;
-/** buttonCornerRadius */
-- (CGRect)emptyViewButtonCornerRadiusInView:(UIScrollView *)scrollView forState:(UIControlState)state;
-/** buttonBorderWidth */
-- (CGRect)emptyViewButtonBorderWidthInView:(UIScrollView *)scrollView forState:(UIControlState)state;
-/** buttonBorderColor */
-- (CGRect)emptyViewButtonBorderColorInView:(UIScrollView *)scrollView forState:(UIControlState)state;
+/** ButtonAttribute */
+- (UIButton *)emptyViewButtonAttributeInView:(UIScrollView *)scrollView forState:(UIControlState)state;
 
 /** backgroundColor Default is ClearColor */
 - (UIColor *)emptyViewBackgroundColorInView:(UIScrollView *)scrollView;

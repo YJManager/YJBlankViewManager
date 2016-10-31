@@ -217,8 +217,13 @@ static char const * const kreloadClickBlockKey      =  "kreloadClickBlockKey";
     }
 }
 
-- (CGRect)emptyViewButtonFrameInView:(UIScrollView *)scrollView forState:(UIControlState)state{
-    return CGRectMake(0, 20, 120, 40);
+- (UIButton *)emptyViewButtonAttributeInView:(UIScrollView *)scrollView forState:(UIControlState)state{
+    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 10, 120, 40);
+    [btn.layer setCornerRadius:20];
+    [btn.layer setBorderWidth:2];
+    [btn.layer setBorderColor:[UIColor greenColor].CGColor];
+    return btn;
 }
 
 - (CGFloat)emptyViewVerticalOffsetInView:(UIScrollView *)scrollView{

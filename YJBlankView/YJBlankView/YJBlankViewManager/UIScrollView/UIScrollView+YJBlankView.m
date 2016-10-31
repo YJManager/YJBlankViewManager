@@ -140,12 +140,25 @@ static char const * const kEmptyDataView   =     "emptyDataView";
                 [view.button setBackgroundImage:[self buttonBackgroundImageForState:UIControlStateNormal] forState:UIControlStateNormal];
                 [view.button setBackgroundImage:[self buttonBackgroundImageForState:UIControlStateHighlighted] forState:UIControlStateHighlighted];
             }
-            if ([self buttonFrameForState:UIControlStateNormal].size.width > 0) {
-                view.button.frame = [self buttonFrameForState:UIControlStateNormal];
-                view.button.layer.masksToBounds = YES;
-                [view.button.layer setCornerRadius:[self buttonFrameForState:UIControlStateNormal].size.height * 0.5];
-                [view.button.layer setBorderWidth:1];
-                [view.button.layer setBorderColor:[UIColor redColor].CGColor];
+            
+            UIButton * btnAttribute = [self buttonAttributeForState:UIControlStateNormal];
+            if (btnAttribute) {
+                // btn 设置frame
+                if (btnAttribute.frame.size.width > 0) {
+                    view.button.frame = btnAttribute.frame;
+                }
+                // 圆角
+                if (btnAttribute.layer.cornerRadius > 0) {
+                    view.button.layer.masksToBounds = YES;
+                    [view.button.layer setCornerRadius:btnAttribute.layer.cornerRadius];
+                }
+                // 边色
+                if (btnAttribute.layer.borderWidth > 0) {
+                    [view.button.layer setBorderWidth:btnAttribute.layer.borderWidth];
+                }
+                if (btnAttribute.layer.borderColor) {
+                    [view.button.layer setBorderColor:btnAttribute.layer.borderColor];
+                }
             }
         }
         
@@ -403,44 +416,13 @@ void _original_implementation(id self, SEL _cmd){
     return nil;
 }
 
-- (CGRect)buttonFrameForState:(UIControlState)state{
-    if (self.emptyDataSource && [self.emptyDataSource respondsToSelector:@selector(emptyViewButtonFrameInView:forState:)]) {
-        CGRect btnFrame = [self.emptyDataSource emptyViewButtonFrameInView:self forState:state];
-        if (btnFrame.size.width > 0) {
-            return btnFrame;
-        };
+- (UIButton *)buttonAttributeForState:(UIControlState)state{
+    if (self.emptyDataSource && [self.emptyDataSource respondsToSelector:@selector(emptyViewButtonAttributeInView:forState:)]) {
+        UIButton * btn = [self.emptyDataSource emptyViewButtonAttributeInView:self forState:state];
+        if (btn) NSAssert([btn isKindOfClass:[UIButton class]], @"You must return a valid UIButton object for -emptyViewButtonAttributeInView:forState:");
+        return btn;
     }
-    return CGRectZero;
-}
-
-- (CGRect)buttonCornerRadiusForState:(UIControlState)state{
-    if (self.emptyDataSource && [self.emptyDataSource respondsToSelector:@selector(emptyViewButtonCornerRadiusInView:forState:)]) {
-        CGRect btnFrame = [self.emptyDataSource emptyViewButtonCornerRadiusInView:self forState:state];
-        if (btnFrame.size.width > 0) {
-            return btnFrame;
-        };
-    }
-    return CGRectZero;
-}
-
-- (CGRect)buttonFrameForState:(UIControlState)state{
-    if (self.emptyDataSource && [self.emptyDataSource respondsToSelector:@selector(emptyViewButtonFrameInView:forState:)]) {
-        CGRect btnFrame = [self.emptyDataSource emptyViewButtonFrameInView:self forState:state];
-        if (btnFrame.size.width > 0) {
-            return btnFrame;
-        };
-    }
-    return CGRectZero;
-}
-
-- (CGRect)buttonFrameForState:(UIControlState)state{
-    if (self.emptyDataSource && [self.emptyDataSource respondsToSelector:@selector(emptyViewButtonFrameInView:forState:)]) {
-        CGRect btnFrame = [self.emptyDataSource emptyViewButtonFrameInView:self forState:state];
-        if (btnFrame.size.width > 0) {
-            return btnFrame;
-        };
-    }
-    return CGRectZero;
+    return nil;
 }
 
 - (UIColor *)emptyBackgroundColor{
