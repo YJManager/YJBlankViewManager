@@ -219,10 +219,10 @@ static char const * const kreloadClickBlockKey      =  "kreloadClickBlockKey";
 
 - (UIButton *)emptyViewButtonAttributeInView:(UIScrollView *)scrollView forState:(UIControlState)state{
     UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(0, 10, 120, 40);
+    btn.frame = CGRectMake(0, 10, 200, 40);
     [btn.layer setCornerRadius:20];
-    [btn.layer setBorderWidth:2];
-    [btn.layer setBorderColor:[UIColor greenColor].CGColor];
+    [btn.layer setBorderWidth:1];
+    [btn.layer setBorderColor:[UIColor orangeColor].CGColor];
     return btn;
 }
 

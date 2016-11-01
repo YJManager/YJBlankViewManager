@@ -20,6 +20,9 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
     [self _setUpNavView];
     [self _setUpMainView];
 }
