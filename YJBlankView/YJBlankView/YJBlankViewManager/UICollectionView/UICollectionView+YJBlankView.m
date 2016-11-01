@@ -228,5 +228,4 @@ static char const * const kreloadClickBlockKey      =  "kreloadClickBlockKey";
         self.tapBlock();
     }
 }
-
 @end
