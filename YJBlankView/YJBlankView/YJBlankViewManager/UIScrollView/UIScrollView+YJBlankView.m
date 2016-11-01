@@ -399,19 +399,31 @@ void _original_implementation(id self, SEL _cmd){
 }
 
 - (UIImage *)buttonImageForState:(UIControlState)state{
-    if (self.emptyDataSource && [self.emptyDataSource respondsToSelector:@selector(emptyViewButtonImageInView:forState:)]) {
-        UIImage *image = [self.emptyDataSource emptyViewButtonImageInView:self forState:state];
-        if (image) NSAssert([image isKindOfClass:[UIImage class]], @"You must return a valid UIImage object for -emptyViewButtonImageInView:forState:");
-        return image;
+    if (self.emptyDataSource && [self.emptyDataSource respondsToSelector:@selector(emptyViewButtonAttributeInView:forState:)]) {
+        UIButton * btn = [self.emptyDataSource emptyViewButtonAttributeInView:self forState:state];
+        if (btn) NSAssert([btn isKindOfClass:[UIButton class]], @"You must return a valid UIButton object for -emptyViewButtonAttributeInView:forState:");
+        
+        if (btn.currentImage) {
+            return btn.currentImage;
+        }else{
+            return nil;
+        }
     }
     return nil;
+
 }
 
 - (UIImage *)buttonBackgroundImageForState:(UIControlState)state{
-    if (self.emptyDataSource && [self.emptyDataSource respondsToSelector:@selector(emptyViewButtonBackgroundImageInView:forState:)]) {
-        UIImage *image = [self.emptyDataSource emptyViewButtonBackgroundImageInView:self forState:state];
-        if (image) NSAssert([image isKindOfClass:[UIImage class]], @"You must return a valid UIImage object for -emptyViewButtonBackgroundImageInView:forState:");
-        return image;
+    
+    if (self.emptyDataSource && [self.emptyDataSource respondsToSelector:@selector(emptyViewButtonAttributeInView:forState:)]) {
+        UIButton * btn = [self.emptyDataSource emptyViewButtonAttributeInView:self forState:state];
+        if (btn) NSAssert([btn isKindOfClass:[UIButton class]], @"You must return a valid UIButton object for -emptyViewButtonAttributeInView:forState:");
+        
+        if (btn.currentBackgroundImage) {
+            return btn.currentBackgroundImage;
+        }else{
+            return nil;
+        }
     }
     return nil;
 }

@@ -29,12 +29,6 @@
 /** buttonTitle */
 - (NSAttributedString *)emptyViewButtonTitleInView:(UIScrollView *)scrollView forState:(UIControlState)state;
 
-/** buttonImage  */
-- (UIImage *)emptyViewButtonImageInView:(UIScrollView *)scrollView forState:(UIControlState)state;
-
-/** buttonBackgroundImage */
-- (UIImage *)emptyViewButtonBackgroundImageInView:(UIScrollView *)scrollView forState:(UIControlState)state;
-
 /** ButtonAttribute */
 - (UIButton *)emptyViewButtonAttributeInView:(UIScrollView *)scrollView forState:(UIControlState)state;
 
