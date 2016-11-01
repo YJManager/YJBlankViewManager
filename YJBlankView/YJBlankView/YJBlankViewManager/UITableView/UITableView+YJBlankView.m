@@ -230,7 +230,7 @@ static char const * const kreloadClickBlockKey      =  "kreloadClickBlockKey";
     if (self.verticalOffsetForNoDataView != 0) {
         return self.verticalOffsetForNoDataView;
     }
-    return 0.0;
+    return -10;
 }
 
 -(BOOL)emptyViewShouldDisplayInView:(UIScrollView *)scrollView{
