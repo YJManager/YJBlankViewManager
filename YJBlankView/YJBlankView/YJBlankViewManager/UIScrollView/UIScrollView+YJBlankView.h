@@ -76,7 +76,6 @@
 
 @end
 
-
 @interface UIScrollView (YJBlankView)
 
 @property (nonatomic, weak) id<YJEmptyDataSource> emptyDataSource;

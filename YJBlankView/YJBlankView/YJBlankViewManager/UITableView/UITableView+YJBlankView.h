@@ -32,5 +32,4 @@ typedef void (^reloadClickActionBlock)();
 
 - (void)loadingWithClickBlock:(reloadClickActionBlock)block;
 
-
 @end
